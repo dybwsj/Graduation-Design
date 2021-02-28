@@ -1,7 +1,6 @@
 package com.dongruan.graduation.networkdiskuser.config;
 
 import com.dongruan.graduation.networkdiskssoclient.SsoContainer;
-import com.dongruan.graduation.networkdiskssoclient.filter.GlobalCorsConfig;
 import com.dongruan.graduation.networkdiskssoclient.filter.LoginFilter;
 import com.dongruan.graduation.networkdiskssoclient.filter.LogoutFilter;
 import com.dongruan.graduation.networkdiskssoclient.listener.LogoutListener;
@@ -85,16 +84,16 @@ public class SmartSsoConfig {
         return registration;
     }
 
-    @Bean
-	public FilterRegistrationBean<GlobalCorsConfig> globalCors() {
-		GlobalCorsConfig globalCorsConfig = new GlobalCorsConfig();
-		FilterRegistrationBean<GlobalCorsConfig> registration = new FilterRegistrationBean<>();
-		registration.setFilter(globalCorsConfig);
-		registration.addUrlPatterns("/*");
-		registration.setOrder(-1);
-		registration.setName("globalCors");
-		return registration;
-	}
+//    @Bean
+//	public FilterRegistrationBean<GlobalCorsConfig> globalCors() {
+//		GlobalCorsConfig globalCorsConfig = new GlobalCorsConfig();
+//		FilterRegistrationBean<GlobalCorsConfig> registration = new FilterRegistrationBean<>();
+//		registration.setFilter(globalCorsConfig);
+//		registration.addUrlPatterns("/*");
+//		registration.setOrder(-1);
+//		registration.setName("globalCors");
+//		return registration;
+//	}
     
     /**
      * App登录Filter容器（可与Web方式共存）

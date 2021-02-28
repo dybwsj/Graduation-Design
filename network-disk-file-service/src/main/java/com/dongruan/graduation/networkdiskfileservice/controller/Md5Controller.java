@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date: 2019/9/25
  */
 @RestController
+@RequestMapping(value = "/file")
 public class Md5Controller {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource

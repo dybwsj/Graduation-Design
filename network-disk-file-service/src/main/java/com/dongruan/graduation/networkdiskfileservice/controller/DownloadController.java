@@ -21,6 +21,7 @@ import java.io.IOException;
  * @date: 2019/9/25
  */
 @RestController
+@RequestMapping(value = "/file")
 public class DownloadController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource

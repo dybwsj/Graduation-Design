@@ -263,7 +263,7 @@ $.fn.html5uploader = function(opts){
 									  tmp_md5 = spark.end();
 									  fileReader.abort();
 									  $.ajax({
-										  url : "http://localhost:8084/md5check",
+										  url : "http://localhost:8086/file/md5check",
 										  type : "get",
 										  data : {"md5":tmp_md5,"fid":fid},
 										  xhrFields : {
@@ -274,7 +274,7 @@ $.fn.html5uploader = function(opts){
 											 // alert(data)
 											  if (data.respCode==1) {
 												  $.ajax({
-													  url : "http://localhost:8084/quickuploadfile",
+													  url : "http://localhost:8086/file/quickuploadfile",
 													  type : "post",
 													  data : {"uid":$('#uid').val(),"md5":tmp_md5,"fileName":file.name,"fid":fid,"parentPath":parentPath},
 													  xhrFields : {
@@ -324,7 +324,7 @@ $.fn.html5uploader = function(opts){
 									  tmp_md5 = spark.end();
 									  fileReader.abort();
 									  $.ajax({
-										  url : "http://localhost:8084/md5check",
+										  url : "http://localhost:8086/file/md5check",
 										  type : "get",
 										  data : {"md5":tmp_md5,"fid":fid},
 										  xhrFields : {
@@ -336,7 +336,7 @@ $.fn.html5uploader = function(opts){
 											  if (data.respCode==1) {
 												  xhr.above();
 												  $.ajax({
-													  url : "http://localhost:8084/quickuploadfile",
+													  url : "http://localhost:8086/file/quickuploadfile",
 													  type : "post",
 													  data : {"uid":$('#uid').val(),"md5":tmp_md5,"fileName":file.name,"fid":fid,"parentPath":parentPath},
 													  xhrFields : {
@@ -595,7 +595,7 @@ $.fn.html5uploader = function(opts){
 											  tmp_md5 = spark.end();
 											  fileReader.abort();
 											  $.ajax({
-												  url : "http://localhost:8084/md5check",
+												  url : "http://localhost:8086/file/md5check",
 												  type : "get",
 												  data : {"md5":tmp_md5,"fid":fid},
 												  xhrFields : {
@@ -606,7 +606,7 @@ $.fn.html5uploader = function(opts){
 													  //alert(data)
 													  if (data.respCode==1) {
 														  $.ajax({
-															  url : "http://localhost:8084/quickuploadfile",
+															  url : "http://localhost:8086/file/quickuploadfile",
 															  type : "post",
 															  data : {"uid":$('#uid').val(),"md5":tmp_md5,"token":$.cookie('token'),"fileName":file.webkitRelativePath,"fid":fid,"parentPath":parentPath},
 															  xhrFields : {
@@ -656,7 +656,7 @@ $.fn.html5uploader = function(opts){
 											  tmp_md5 = spark.end();
 											  fileReader.abort();
 											  $.ajax({
-												  url : "http://localhost:8084/md5check",
+												  url : "http://localhost:8086/file/md5check",
 												  type : "get",
 												  data : {"md5":tmp_md5,"fid":fid},
 												  xhrFields : {
@@ -668,7 +668,7 @@ $.fn.html5uploader = function(opts){
 													  if (data.respCode==1) {
 														  xhr.above();
 														  $.ajax({
-															  url : "http://localhost:8084/quickuploadfile",
+															  url : "http://localhost:8086/file/quickuploadfile",
 															  type : "post",
 															  data : {"uid":$('#uid').val(),"md5":tmp_md5,"token":$.cookie('token'),"fileName":file.webkitRelativePath,"fid":fid,"parentPath":parentPath},
 															  xhrFields : {

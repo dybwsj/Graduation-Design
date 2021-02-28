@@ -78,7 +78,7 @@ $(document).ready(function () {
         auto: true,
         multi: true,
         removeTimeout: 999999999,
-        url: "http://localhost:8084/uploadfile",
+        url: "http://localhost:8086/file/uploadfile",
         onUploadStart: function () {
             $("#web-uploader").css("display", "block")
         },
@@ -95,7 +95,7 @@ $(document).ready(function () {
                 var inputText = $("#GHJDI1").val();
                 if (inputText.length < 20 && inputText.match(/^[a-zA-Z0-9\u4e00-\u9fa5_]+$/) != null) {
                     $.ajax({
-                        url: "http://localhost:8083/createdir",
+                        url: "http://localhost:8086/core/createdir",
                         type: "post",
                         data: JSON.stringify({
                             "uid": $('#uid').val(),
@@ -152,7 +152,7 @@ $(document).ready(function () {
                 } else {
                     if (inputText.length < 50 && inputText.match(/^[a-zA-Z0-9\u4e00-\u9fa5_()]+$/) != null) {
                         $.ajax({
-                            url: "http://localhost:8083/renamefileordir",
+                            url: "http://localhost:8086/core/renamefileordir",
                             type: "put",
                             data: JSON.stringify({
                                 "uid": $("#uid").val(),
@@ -169,7 +169,7 @@ $(document).ready(function () {
                                     $("#my-confirm1").modal({
                                         closeViaDimmer: 0, onConfirm: function (options) {
                                             $.ajax({
-                                                url: "http://localhost:8083/renamefileordir",
+                                                url: "http://localhost:8086/core/renamefileordir",
                                                 type: "put",
                                                 data: JSON.stringify({
                                                     "uid": $("#uid").val(),
@@ -315,7 +315,7 @@ $(document).ready(function () {
                     vids.push(contentVal.uuid)
                 }
                 $.ajax({
-                    url: "http://localhost:8083/deletefile",
+                    url: "http://localhost:8086/core/deletefile",
                     type: "delete",
                     data: {"uid": $("#uid").val(), "vids": JSON.stringify(vids)},
                     xhrFields: {withCredentials: true},

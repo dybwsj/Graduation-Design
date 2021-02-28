@@ -77,7 +77,7 @@ function abced() {
 
 function loadCapacity() {
     $.ajax({
-        url: "http://localhost:8083/usecapacity?uid=" + $("#uid").val(),
+        url: "http://localhost:8086/core/usecapacity?uid=" + $("#uid").val(),
         type: "get",
         xhrFields: {withCredentials: true},
         crossDomain: true,
@@ -477,7 +477,7 @@ function showContent3(content, page) {
 
 function loadContent3(b, c) {
     $.ajax({
-        url: "http://localhost:8083/searchfile?uid=" + $("#uid").val() + "&key=" + b + "&page=" + c + "&order=update_time",
+        url: "http://localhost:8086/core/searchfile?uid=" + $("#uid").val() + "&key=" + b + "&page=" + c + "&order=update_time",
         type: "get",
         xhrFields: {withCredentials: true},
         crossDomain: true,
@@ -500,7 +500,7 @@ function loadContent3(b, c) {
 function loadContent2(b) {
     $(".vdAfKMb").empty();
     $.ajax({
-        url: "http://localhost:8083/searchfile?uid=" + $("#uid").val() + "&key=" + b + "&page=" + 1 + "&order=update_time",
+        url: "http://localhost:8086/core/searchfile?uid=" + $("#uid").val() + "&key=" + b + "&page=" + 1 + "&order=update_time",
         type: "get",
         xhrFields: {withCredentials: true},
         crossDomain: true,
@@ -560,7 +560,7 @@ function loadContent() {
         g = 0
     }
     $.ajax({
-        url: "http://localhost:8083/listfile",
+        url: "http://localhost:8086/core/listfile",
         type: "get",
         data: {
             "uid": $("#uid").val(),
@@ -615,7 +615,7 @@ function loadContent1(h) {
         g = 0
     }
     $.ajax({
-        url: "http://localhost:8083/listfile",
+        url: "http://localhost:8086/core/listfile",
         type: "get",
         data: {
             "uid": $("#uid").val(),
@@ -962,7 +962,7 @@ function loadFolder(c, d) {
     var b = folderMap.get(c);
     if (b == null) {
         $.ajax({
-            url: "http://localhost:8083/listfolder",
+            url: "http://localhost:8086/core/listfolder",
             type: "get",
             data: {"uid": $("#uid"), "parentPath": c,},
             xhrFields: {withCredentials: true},
@@ -1046,7 +1046,7 @@ function copyAndMove(id, chooseNum, dest) {
         vids.push(contentVal.uuid)
     }
     $.ajax({
-        url: "http://localhost:8083/copyormovefile",
+        url: "http://localhost:8086/core/copyormovefile",
         type: "put",
         data: JSON.stringify({"uid": $("#uid").val(), "vids": JSON.stringify(vids), "opera": id, "dest": dest}),
         xhrFields: {withCredentials: true},
@@ -1089,7 +1089,7 @@ function download(chooseNum) {
     var form = $("<form id=" + index + ">");
     form.attr("style", "display:none");
     form.attr("method", "get");
-    form.attr("action", "http://localhost:8084/download");
+    form.attr("action", "http://localhost:8086/file/download");
     var input1 = $("<input>");
     input1.attr("type", "hidden");
     input1.attr("name", "vids");

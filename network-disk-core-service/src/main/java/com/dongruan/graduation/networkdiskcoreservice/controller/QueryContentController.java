@@ -26,6 +26,7 @@ import java.io.UnsupportedEncodingException;
  * @date: 2019/9/24
  */
 @RestController
+@RequestMapping(value = "/core")
 public class QueryContentController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource

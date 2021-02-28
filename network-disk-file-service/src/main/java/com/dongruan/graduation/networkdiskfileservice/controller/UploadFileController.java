@@ -25,6 +25,7 @@ import java.io.UnsupportedEncodingException;
  * @date: 2019/9/25
  */
 @RestController
+@RequestMapping(value = "/file")
 public class UploadFileController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource

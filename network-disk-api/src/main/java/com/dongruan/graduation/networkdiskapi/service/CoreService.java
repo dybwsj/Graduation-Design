@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 public interface CoreService {
-    @RequestMapping(value = "createdir", method = RequestMethod.POST)
+    @RequestMapping(value = "core/createdir", method = RequestMethod.POST)
     RestAPIResult<String> createDir(@RequestBody CreateDirRequest request);
 
-    @RequestMapping(value = "checkdirwhether", method = RequestMethod.GET)
+    @RequestMapping(value = "core/checkdirwhether", method = RequestMethod.GET)
     RestAPIResult<Integer> checkDirWhether(@SpringQueryMap CheckDirWhetherRequest request);
 
-    @RequestMapping(value = "createvirtualaddress", method = RequestMethod.POST)
+    @RequestMapping(value = "core/createvirtualaddress", method = RequestMethod.POST)
     RestAPIResult<Integer> createVirtualAddress(@RequestBody CreateVirtualAddressRequest request);
 
-    @RequestMapping(value = "getfilenamebyvid", method = RequestMethod.GET)
+    @RequestMapping(value = "core/getfilenamebyvid", method = RequestMethod.GET)
     RestAPIResult<String> getFileNameByVid(@RequestParam("vid") String vid, @RequestParam("uid") String uid);
 
-    @RequestMapping(value = "getvirtualaddress", method = RequestMethod.GET)
+    @RequestMapping(value = "core/getvirtualaddress", method = RequestMethod.GET)
     RestAPIResult<VirtualAddressDTO> getVirtualaddress(@RequestParam("vid") String vid, @RequestParam("uid") String uid);
 
-    @RequestMapping(value = "initcapacity", method = RequestMethod.POST)
+    @RequestMapping(value = "core/initcapacity", method = RequestMethod.POST)
     RestAPIResult<Integer> initCapacity(@RequestParam("userId") String userId);
 }
