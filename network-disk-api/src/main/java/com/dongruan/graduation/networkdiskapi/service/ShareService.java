@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface ShareService {
 
-    @RequestMapping(value = "addsharedownload", method = {RequestMethod.POST})
+    @RequestMapping(value = "share/addsharedownload", method = {RequestMethod.POST})
     void addShareDownload(@RequestParam("shareId") String shareId);
 
-    @RequestMapping(value = "getvinfo", method = RequestMethod.GET)
+    @RequestMapping(value = "share/getvinfo", method = RequestMethod.GET)
     RestAPIResult<String> getUid(@RequestParam("shareId") String shareId, @RequestParam("lockPassword") String lockPassword);
 }

@@ -4,24 +4,32 @@ import com.dongruan.graduation.networkdiskcommon.request.AddShareViewCountReques
 import com.dongruan.graduation.networkdiskcommon.request.SaveShareRequest;
 import com.dongruan.graduation.networkdiskcommon.request.ShareListRequest;
 import com.dongruan.graduation.networkdiskcommon.request.ShareRequest;
+import com.dongruan.graduation.networkdiskcommon.response.UserInfoDTO;
 import com.dongruan.graduation.networkdiskcommon.utils.RestAPIResult;
+import com.dongruan.graduation.networkdiskshareservice.provider.PageProvider;
 import com.dongruan.graduation.networkdiskshareservice.provider.ShareProvider;
+import com.dongruan.graduation.networkdiskshareservice.remote.UserRemote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-@RestController
+@Controller
+@RequestMapping("/share")
 public class ShareController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Resource
     private HttpServletRequest httpServletRequest;
     @Autowired
     private ShareProvider shareProvider;
+    @Autowired
+    private PageProvider pageProvider;
 
     /**
      * 分享文件
@@ -29,6 +37,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     @RequestMapping(value = "share", method = RequestMethod.POST)
     public RestAPIResult<String> share(@RequestBody ShareRequest request) {
         logger.info("分享文件请求URL：{}", httpServletRequest.getRequestURL());
@@ -48,6 +57,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     //@RequestMapping(value = "shareList", method = {RequestMethod.POST})
     @RequestMapping(value = "sharelist", method = RequestMethod.GET)
     public RestAPIResult<String> shareList(ShareListRequest request) {
@@ -68,6 +78,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     //@RequestMapping(value = "unShare", method = {RequestMethod.POST})
     @RequestMapping(value = "unshare", method = RequestMethod.GET)
     public RestAPIResult<String> unShare(String uid, String vids) {
@@ -88,6 +99,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     //@RequestMapping(value = "getShareUser", method = {RequestMethod.POST})
     @RequestMapping(value = "getshareuser", method = RequestMethod.GET)
     public RestAPIResult<String> getShareUser(String shareId) {
@@ -108,6 +120,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     //@RequestMapping(value = "saveShare", method = {RequestMethod.POST})
     @RequestMapping(value = "saveshare", method = RequestMethod.POST)
     public RestAPIResult<String> saveShare(@RequestBody SaveShareRequest request) {
@@ -128,6 +141,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     //@RequestMapping(value = "checkLock", method = {RequestMethod.POST})
     @RequestMapping(value = "checklock", method = RequestMethod.GET)
     public RestAPIResult<String> checkLock(@RequestParam("shareId") String shareId) {
@@ -148,6 +162,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     //@RequestMapping(value = "verifykLock", method = {RequestMethod.POST})
     @RequestMapping(value = "verifyklock", method = RequestMethod.GET)
     public RestAPIResult<String> verifykLock(@RequestParam("lockPassword") String lockPassword, @RequestParam("shareId") String shareId) {
@@ -168,6 +183,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     @RequestMapping(value = "getvinfo", method = RequestMethod.GET)
     public RestAPIResult<String> getUid(@RequestParam("shareId") String shareId, @RequestParam("lockPassword") String lockPassword) {
         logger.info("获取分享虚拟地址信息请求URL：{}", httpServletRequest.getRequestURL());
@@ -187,6 +203,7 @@ public class ShareController {
      * @author: quhailong
      * @date: 2019/9/26
      */
+    @ResponseBody
     //@RequestMapping(value = "addShareView", method = {RequestMethod.POST})
     @RequestMapping(value = "addshareview", method = RequestMethod.POST)
     public void addShareView(@RequestBody AddShareViewCountRequest request) {
@@ -217,5 +234,18 @@ public class ShareController {
         logger.info("增加分享下载量数据处理结束");
         stopWatch.stop();
         logger.info("增加分享下载量调用时间,millies:{}", stopWatch.getTotalTimeMillis());
+    }
+
+    @RequestMapping("/s/{shareId}/{uid}")
+    public String s(Model model, @PathVariable String shareId, @PathVariable String uid) {
+        logger.info("查看分享页面请求URL：{}", httpServletRequest.getRequestURL());
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        logger.info("查看分享页面数据处理开始");
+        String resultUrl = pageProvider.sHandle(model, shareId, uid);
+        logger.info("查看分享页面数据处理结束,resultUrl:{}", resultUrl);
+        stopWatch.stop();
+        logger.info("查看分享页面调用时间,millies:{}", stopWatch.getTotalTimeMillis());
+        return resultUrl;
     }
 }

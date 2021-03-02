@@ -2,9 +2,11 @@ package com.dongruan.graduation.networkdiskssoserver.service;
 
 import com.dongruan.graduation.networkdiskcommon.request.ChangePwdRequest;
 import com.dongruan.graduation.networkdiskcommon.request.ModifyPassRequest;
+import com.dongruan.graduation.networkdiskcommon.response.UserInfoDTO;
 import com.dongruan.graduation.networkdiskcommon.utils.RestAPIResult;
 import com.dongruan.graduation.networkdiskssoclient.rpc.Result;
 import com.dongruan.graduation.networkdiskssoclient.rpc.SsoUser;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 用户服务接口
@@ -28,5 +30,6 @@ public interface UserService {
 
 	RestAPIResult<String> modifyPassword(ChangePwdRequest request);
 
+	RestAPIResult<UserInfoDTO> getUserInfo(@RequestParam("userId") String userId);
 
 }

@@ -2,6 +2,7 @@ package com.dongruan.graduation.networkdiskssoserver.service.impl;
 
 import com.dongruan.graduation.networkdiskcommon.request.ChangePwdRequest;
 import com.dongruan.graduation.networkdiskcommon.request.ModifyPassRequest;
+import com.dongruan.graduation.networkdiskcommon.response.UserInfoDTO;
 import com.dongruan.graduation.networkdiskcommon.utils.IDUtils;
 import com.dongruan.graduation.networkdiskcommon.utils.JWTUtils;
 import com.dongruan.graduation.networkdiskcommon.utils.MD5Utils;
@@ -14,9 +15,15 @@ import com.dongruan.graduation.networkdiskssoserver.entity.UserInfoDO;
 import com.dongruan.graduation.networkdiskssoserver.model.User;
 import com.dongruan.graduation.networkdiskssoserver.service.UserService;
 import com.dongruan.graduation.networkdiskssoserver.util.CookieUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.Objects;
@@ -112,4 +119,15 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public RestAPIResult<UserInfoDTO> getUserInfo(@RequestParam("userId") String userId) {
+		RestAPIResult<UserInfoDTO> panResult = new RestAPIResult<>();
+		UserInfoDTO userInfoDTO = new UserInfoDTO();
+		UserInfoDO userInfoDO = userInfoDao.getUserInfoByUserId(userId);
+		if (userInfoDO != null) {
+			BeanUtils.copyProperties(userInfoDO, userInfoDTO);
+		}
+		panResult.success(userInfoDTO);
+		return panResult;
+	}
 }

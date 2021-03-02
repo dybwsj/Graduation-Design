@@ -384,6 +384,6 @@ $(document).ready(function () {
         createShare(chooseNum)
     });
     $("#sharePage").click(function () {
-        location.href = "http://localhost:8085/manage"
+        location.href = "http://localhost:8086/share/manage/" + $("#uid").val()
     })
 });

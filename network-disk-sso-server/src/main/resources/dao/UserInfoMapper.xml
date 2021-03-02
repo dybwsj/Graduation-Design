@@ -136,6 +136,6 @@
     select
     <include refid="Base_Column_List" />
     from user_info
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where id = #{userId,jdbcType=VARCHAR}
   </select>
 </mapper>

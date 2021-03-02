@@ -2,13 +2,17 @@ package com.dongruan.graduation.networkdiskssoserver.controller;
 
 import com.dongruan.graduation.networkdiskcommon.request.ChangePwdRequest;
 import com.dongruan.graduation.networkdiskcommon.request.ModifyPassRequest;
+import com.dongruan.graduation.networkdiskcommon.response.UserInfoDTO;
 import com.dongruan.graduation.networkdiskcommon.utils.RestAPIResult;
 import com.dongruan.graduation.networkdiskssoserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -59,5 +63,10 @@ public class PasswordController {
     @PostMapping(value = "modifyPassword")
     public RestAPIResult<String> modifyPassword(@RequestBody ChangePwdRequest request) {
         return userService.modifyPassword(request);
+    }
+
+    @GetMapping("getuserinfo/{userId}")
+    public RestAPIResult<UserInfoDTO> getUserInfo(@PathVariable("userId") String userId) {
+        return userService.getUserInfo(userId);
     }
 }

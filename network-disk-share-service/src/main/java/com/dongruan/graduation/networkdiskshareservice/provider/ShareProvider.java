@@ -18,6 +18,7 @@ import com.dongruan.graduation.networkdiskshareservice.remote.CoreRemote;
 import com.dongruan.graduation.networkdiskshareservice.remote.UserRemote;
 import com.dongruan.graduation.networkdiskshareservice.service.ShareMapService;
 import com.dongruan.graduation.networkdiskshareservice.service.ShareService;
+import com.dongruan.graduation.networkdiskshareservice.utils.GetUserInfoUtils;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -170,7 +171,7 @@ public class ShareProvider {
             return panResult;
         }
         BeanUtils.copyPropertiesIgnoreNull(shareDO, ShareDTO);
-        UserInfoDTO userInfoDTO = userRemote.getUserInfo(shareDO.getUserId()).getRespData();
+        UserInfoDTO userInfoDTO = GetUserInfoUtils.getUserInfo(shareDO.getUserId());
         Map<String, Object> map = new HashMap<>();
         map.put("userinfo", JSONUtils.toJSONString(userInfoDTO));
         map.put("share", JSONUtils.toJSONString(ShareDTO));
